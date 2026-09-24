@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-24T00:00:00.000Z",
+  "status": "ok",
+  "source": "radio-browser",
+  "presetCount": 5,
+  "itemCount": 15,
+  "presets": [
+    {
+      "id": "lofi",
+      "itemCount": 3
+    },
+    {
+      "id": "jazz",
+      "itemCount": 3
+    },
+    {
+      "id": "classical",
+      "itemCount": 3
+    },
+    {
+      "id": "ambient",
+      "itemCount": 3
+    },
+    {
+      "id": "electronic",
+      "itemCount": 3
+    }
+  ],
+  "upstreamServers": []
+}

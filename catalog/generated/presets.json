@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-24T00:00:00.000Z",
+  "presets": [
+    {
+      "id": "lofi",
+      "name": "Lo-fi Focus",
+      "description": "适合专注与阅读的 Lo-fi 电台",
+      "type": "station",
+      "source": "radio-browser",
+      "items": [
+        {
+          "id": "radio-browser-lofi-1",
+          "title": "Lo-fi One Secure",
+          "streamUrl": "https://streams.example.test/lofi-1.mp3",
+          "codec": "mp3",
+          "homepage": "https://radio.example.test/lofi-1",
+          "country": "US",
+          "tags": [
+            "lofi",
+            "chill"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-lofi-2",
+          "title": "Lo-fi Two",
+          "streamUrl": "https://streams.example.test/lofi-2.aac",
+          "codec": "aac",
+          "homepage": "https://radio.example.test/lofi-2",
+          "country": "DE",
+          "tags": [
+            "lofi"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-lofi-3",
+          "title": "Lo-fi Three",
+          "streamUrl": "https://streams.example.test/lofi-3.ogg",
+          "codec": "ogg",
+          "homepage": "https://radio.example.test/lofi-3",
+          "country": "FR",
+          "tags": [
+            "lofi",
+            "instrumental"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "jazz",
+      "name": "Jazz Lounge",
+      "description": "爵士、器乐与夜间音乐电台",
+      "type": "station",
+      "source": "radio-browser",
+      "items": [
+        {
+          "id": "radio-browser-jazz-1",
+          "title": "Jazz One",
+          "streamUrl": "https://streams.example.test/jazz-1.mp3",
+          "codec": "mp3",
+          "homepage": "https://radio.example.test/jazz-1",
+          "country": "FR",
+          "tags": [
+            "jazz"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-jazz-3",
+          "title": "Jazz Three",
+          "streamUrl": "https://streams.example.test/jazz-3.ogg",
+          "codec": "ogg",
+          "homepage": "https://radio.example.test/jazz-3",
+          "country": "GB",
+          "tags": [
+            "jazz",
+            "instrumental"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-jazz-2",
+          "title": "Jazz Two",
+          "streamUrl": "http://streams.example.test/jazz-2.aac",
+          "codec": "aac",
+          "homepage": "https://radio.example.test/jazz-2",
+          "country": "US",
+          "tags": [
+            "jazz",
+            "smooth jazz"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "classical",
+      "name": "Classical Essentials",
+      "description": "古典音乐与交响乐电台",
+      "type": "station",
+      "source": "radio-browser",
+      "items": [
+        {
+          "id": "radio-browser-classical-1",
+          "title": "Classical One",
+          "streamUrl": "https://streams.example.test/classical-1.mp3",
+          "codec": "mp3",
+          "homepage": "https://radio.example.test/classical-1",
+          "country": "AT",
+          "tags": [
+            "classical"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-classical-2",
+          "title": "Classical Two",
+          "streamUrl": "https://streams.example.test/classical-2.aac",
+          "codec": "aac",
+          "homepage": "https://radio.example.test/classical-2",
+          "country": "DE",
+          "tags": [
+            "classical",
+            "orchestra"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-classical-3",
+          "title": "Classical Three",
+          "streamUrl": "http://streams.example.test/classical-3.ogg",
+          "codec": "ogg",
+          "homepage": "https://radio.example.test/classical-3",
+          "country": "GB",
+          "tags": [
+            "classical",
+            "piano"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "ambient",
+      "name": "Ambient Space",
+      "description": "氛围、冥想与轻音乐电台",
+      "type": "station",
+      "source": "radio-browser",
+      "items": [
+        {
+          "id": "radio-browser-ambient-1",
+          "title": "Ambient One",
+          "streamUrl": "https://streams.example.test/ambient-1.mp3",
+          "codec": "mp3",
+          "homepage": "https://radio.example.test/ambient-1",
+          "country": "IS",
+          "tags": [
+            "ambient"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-ambient-2",
+          "title": "Ambient Two",
+          "streamUrl": "https://streams.example.test/ambient-2.aac",
+          "codec": "aac",
+          "homepage": "https://radio.example.test/ambient-2",
+          "country": "CA",
+          "tags": [
+            "ambient",
+            "meditation"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-ambient-3",
+          "title": "Ambient Three",
+          "streamUrl": "http://streams.example.test/ambient-3.ogg",
+          "codec": "ogg",
+          "homepage": "https://radio.example.test/ambient-3",
+          "country": "NL",
+          "tags": [
+            "ambient",
+            "chill"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "id": "electronic",
+      "name": "Electronic Pulse",
+      "description": "电子、舞曲与合成器音乐电台",
+      "type": "station",
+      "source": "radio-browser",
+      "items": [
+        {
+          "id": "radio-browser-electronic-1",
+          "title": "Electronic One",
+          "streamUrl": "https://streams.example.test/electronic-1.mp3",
+          "codec": "mp3",
+          "homepage": "https://radio.example.test/electronic-1",
+          "country": "NL",
+          "tags": [
+            "electronic"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-electronic-2",
+          "title": "Electronic Two",
+          "streamUrl": "https://streams.example.test/electronic-2.aac",
+          "codec": "aac",
+          "homepage": "https://radio.example.test/electronic-2",
+          "country": "DE",
+          "tags": [
+            "electronic",
+            "dance"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        },
+        {
+          "id": "radio-browser-electronic-3",
+          "title": "Electronic Three",
+          "streamUrl": "http://streams.example.test/electronic-3.ogg",
+          "codec": "ogg",
+          "homepage": "https://radio.example.test/electronic-3",
+          "country": "JP",
+          "tags": [
+            "electronic",
+            "synth"
+          ],
+          "lastCheckedAt": "2026-09-24T00:00:00Z"
+        }
+      ]
+    }
+  ]
+}

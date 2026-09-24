@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build && node scripts/check-no-external-fonts.mjs",
+    "catalog:generate": "node scripts/catalog-generator.mjs",
+    "catalog:generate:fixture": "node scripts/catalog-generator.mjs --fixture scripts/fixtures/radio-browser-stations.json --output catalog/generated --generated-at 2026-09-24T00:00:00.000Z",
+    "catalog:check": "node scripts/check-catalog.mjs",
     "test": "vitest",
     "test:run": "vitest run"
   },
