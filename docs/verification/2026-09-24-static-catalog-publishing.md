@@ -50,7 +50,8 @@ Electronic 超时项使用 20 秒窗口复测后返回 HTTP 200 并读取 4096 �
 
 - Public 仓库：`https://github.com/desertsurge/fak-music-plugin`
 - Pages：`https://desertsurge.github.io/fak-music-plugin/`
-- 成功工作流：`35972631421`，head SHA `3d67ae6e4c891be9f5a41e107a999d1c3adeef4e`。
+- 最终发布工作流：`35973520847`，head SHA `258f9ff585969cf347631f58ab1c002c551f8987`，结论为 `success`。
 - build job 的依赖安装、测试、实时生成、实际产物校验、扩展构建、Pages 配置与 artifact 上传均为 `success`；deploy job 为 `success`。
 - 匿名读取首页、`presets.json`、`health.json` 均为 HTTP 200；本地 `catalog:check` 对下载副本验证通过，5 个预设、40 个电台，catalog 与 health 的 `generatedAt` 和数量一致。
-- 浏览器实测首页标题、5 行分类、JSON 链接和无水平溢出均正常。首次检查仅发现缺少 favicon 导致的 404，生成器已增加 data favicon 并由回归测试覆盖。
+- 浏览器实测首页标题、5 行分类、JSON 链接和无水平溢出均正常。首次检查发现缺少 favicon 导致的 404；最终部署已包含 data favicon，复测控制台 warning/error 为 0。
+- 最终截图：`artifacts/fak-music-plugin/pages-index.png`（本地忽略文件）；通过 `cc-connect` 发送到飞书 `manager` 项目会话成功。
