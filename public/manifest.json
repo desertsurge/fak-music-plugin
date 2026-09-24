@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Fak Music",
+  "version": "0.1.0",
+  "description": "开箱即用的公开音乐电台与开放授权音乐播放器。",
+  "action": {
+    "default_title": "Fak Music",
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "assets/background.js",
+    "type": "module"
+  },
+  "permissions": ["storage", "alarms", "offscreen"],
+  "host_permissions": [
+    "https://streams.iloveradio.de/*",
+    "https://jazzradio.ice.infomaniak.ch/*",
+    "https://archive.org/*",
+    "https://*.archive.org/*",
+    "https://raw.githubusercontent.com/*"
+  ]
+}
