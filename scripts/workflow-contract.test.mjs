@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 describe('publish catalog workflow', () => {
@@ -11,7 +11,7 @@ describe('publish catalog workflow', () => {
       'pages: write',
       'id-token: write',
       'actions/setup-node@v4',
-      'node-version: 22.22.0',
+      'node-version: 22.22.2',
       'npm ci',
       'npm run test:run',
       'npm run catalog:generate',
@@ -24,5 +24,12 @@ describe('publish catalog workflow', () => {
     ]) {
       expect(workflow, `missing workflow contract: ${required}`).toContain(required);
     }
+  });
+
+  it('keeps CI dependencies on the public npm registry', () => {
+    expect(existsSync('.npmrc')).toBe(true);
+    if (!existsSync('.npmrc')) return;
+    expect(readFileSync('.npmrc', 'utf8')).toContain('registry=https://registry.npmjs.org/');
+    expect(readFileSync('package-lock.json', 'utf8')).not.toContain('public.repo.ddns.e-lead.cn');
   });
 });

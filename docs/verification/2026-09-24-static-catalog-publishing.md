@@ -38,7 +38,7 @@ Electronic 超时项使用 20 秒窗口复测后返回 HTTP 200 并读取 4096 �
 - `npm run build`：TypeScript、Vite 构建和外部字体扫描通过；构建产物包含 Pages 默认地址及 HTTP/HTTPS 主机权限。
 - `git diff --check`：无空白错误；Git 仅提示 Windows 下后续检出可能使用 CRLF。
 
-本地 Node.js 为 `24.13.0`，工作流固定为稳定 LTS `22.22.0`，两者都满足依赖要求的 Node `22.12+` 范围。首次远程运行使用 Node `24.15.0` 时，`npm ci` 两次复现 npm 自身的 `Exit handler never called!`；因此 CI 改用稳定 LTS，不涉及依赖或业务代码变更。
+本地 Node.js 为 `24.13.0`，工作流固定为满足依赖 engine 的稳定 LTS `22.22.2`。远程 `npm ci` 的失败根因是初始 lockfile 将 tarball 地址写成了本机可访问、GitHub runner 不可访问的公司内网镜像；仓库现用 `.npmrc` 固定公开 npm registry，并由测试阻止 lockfile 再次包含该内网域名。
 
 ## 审查结论
 
