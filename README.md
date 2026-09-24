@@ -13,7 +13,7 @@ Fak Music 是一个 Chrome/Edge Manifest V3 音乐扩展开发样例。安装后
 
 ## 本地开发
 
-环境要求：Node.js 20+、npm。
+环境要求：Node.js 22.12+、npm。
 
 ```bash
 npm install

@@ -11,7 +11,7 @@ describe('publish catalog workflow', () => {
       'pages: write',
       'id-token: write',
       'actions/setup-node@v4',
-      'node-version: 24.15.0',
+      'node-version: 22.22.0',
       'npm ci',
       'npm run test:run',
       'npm run catalog:generate',
