@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "source": "radio-browser",
+  "allowedCodecs": ["MP3", "AAC", "OGG"],
+  "presets": [
+    {
+      "id": "lofi",
+      "name": "Lo-fi Focus",
+      "description": "适合专注与阅读的 Lo-fi 电台",
+      "tag": "lofi",
+      "minimumItems": 3,
+      "limit": 8
+    },
+    {
+      "id": "jazz",
+      "name": "Jazz Lounge",
+      "description": "爵士、器乐与夜间音乐电台",
+      "tag": "jazz",
+      "minimumItems": 3,
+      "limit": 8
+    },
+    {
+      "id": "classical",
+      "name": "Classical Essentials",
+      "description": "古典音乐与交响乐电台",
+      "tag": "classical",
+      "minimumItems": 3,
+      "limit": 8
+    },
+    {
+      "id": "ambient",
+      "name": "Ambient Space",
+      "description": "氛围、冥想与轻音乐电台",
+      "tag": "ambient",
+      "minimumItems": 3,
+      "limit": 8
+    },
+    {
+      "id": "electronic",
+      "name": "Electronic Pulse",
+      "description": "电子、舞曲与合成器音乐电台",
+      "tag": "electronic",
+      "minimumItems": 3,
+      "limit": 8
+    }
+  ]
+}

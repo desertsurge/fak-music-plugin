@@ -1,0 +1,30 @@
+{
+  "lofi": [
+    { "stationuuid": "lofi-1", "name": "Lo-fi One", "url_resolved": "http://streams.example.test/lofi-1.mp3", "homepage": "https://radio.example.test/lofi-1", "tags": "lofi,chill", "countrycode": "US", "codec": "MP3", "bitrate": 128, "clickcount": 120, "votes": 10, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "lofi-1", "name": "Lo-fi One Secure", "url_resolved": "https://streams.example.test/lofi-1.mp3", "homepage": "https://radio.example.test/lofi-1", "tags": "lofi,chill", "countrycode": "US", "codec": "MP3", "bitrate": 128, "clickcount": 110, "votes": 9, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "lofi-2", "name": "Lo-fi Two", "url_resolved": "https://streams.example.test/lofi-2.aac", "homepage": "https://radio.example.test/lofi-2", "tags": "lofi", "countrycode": "DE", "codec": "AAC", "bitrate": 192, "clickcount": 90, "votes": 8, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "lofi-3", "name": "Lo-fi Three", "url_resolved": "https://streams.example.test/lofi-3.ogg", "homepage": "https://radio.example.test/lofi-3", "tags": "lofi,instrumental", "countrycode": "FR", "codec": "OGG", "bitrate": 160, "clickcount": 80, "votes": 7, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "lofi-bad", "name": "Broken Lo-fi", "url_resolved": "https://streams.example.test/broken.mp3", "codec": "MP3", "lastcheckok": 0 }
+  ],
+  "jazz": [
+    { "stationuuid": "jazz-1", "name": "Jazz One", "url_resolved": "https://streams.example.test/jazz-1.mp3", "homepage": "https://radio.example.test/jazz-1", "tags": "jazz", "countrycode": "FR", "codec": "MP3", "bitrate": 192, "clickcount": 100, "votes": 12, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "jazz-2", "name": "Jazz Two", "url_resolved": "http://streams.example.test/jazz-2.aac", "homepage": "https://radio.example.test/jazz-2", "tags": "jazz,smooth jazz", "countrycode": "US", "codec": "AAC", "bitrate": 128, "clickcount": 90, "votes": 11, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "jazz-3", "name": "Jazz Three", "url_resolved": "https://streams.example.test/jazz-3.ogg", "homepage": "https://radio.example.test/jazz-3", "tags": "jazz,instrumental", "countrycode": "GB", "codec": "OGG", "bitrate": 160, "clickcount": 80, "votes": 10, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" }
+  ],
+  "classical": [
+    { "stationuuid": "classical-1", "name": "Classical One", "url_resolved": "https://streams.example.test/classical-1.mp3", "homepage": "https://radio.example.test/classical-1", "tags": "classical", "countrycode": "AT", "codec": "MP3", "bitrate": 192, "clickcount": 100, "votes": 12, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "classical-2", "name": "Classical Two", "url_resolved": "https://streams.example.test/classical-2.aac", "homepage": "https://radio.example.test/classical-2", "tags": "classical,orchestra", "countrycode": "DE", "codec": "AAC", "bitrate": 128, "clickcount": 90, "votes": 11, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "classical-3", "name": "Classical Three", "url_resolved": "http://streams.example.test/classical-3.ogg", "homepage": "https://radio.example.test/classical-3", "tags": "classical,piano", "countrycode": "GB", "codec": "OGG", "bitrate": 160, "clickcount": 80, "votes": 10, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" }
+  ],
+  "ambient": [
+    { "stationuuid": "ambient-1", "name": "Ambient One", "url_resolved": "https://streams.example.test/ambient-1.mp3", "homepage": "https://radio.example.test/ambient-1", "tags": "ambient", "countrycode": "IS", "codec": "MP3", "bitrate": 192, "clickcount": 100, "votes": 12, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "ambient-2", "name": "Ambient Two", "url_resolved": "https://streams.example.test/ambient-2.aac", "homepage": "https://radio.example.test/ambient-2", "tags": "ambient,meditation", "countrycode": "CA", "codec": "AAC", "bitrate": 128, "clickcount": 90, "votes": 11, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "ambient-3", "name": "Ambient Three", "url_resolved": "http://streams.example.test/ambient-3.ogg", "homepage": "https://radio.example.test/ambient-3", "tags": "ambient,chill", "countrycode": "NL", "codec": "OGG", "bitrate": 160, "clickcount": 80, "votes": 10, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" }
+  ],
+  "electronic": [
+    { "stationuuid": "electronic-1", "name": "Electronic One", "url_resolved": "https://streams.example.test/electronic-1.mp3", "homepage": "https://radio.example.test/electronic-1", "tags": "electronic", "countrycode": "NL", "codec": "MP3", "bitrate": 192, "clickcount": 100, "votes": 12, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "electronic-2", "name": "Electronic Two", "url_resolved": "https://streams.example.test/electronic-2.aac", "homepage": "https://radio.example.test/electronic-2", "tags": "electronic,dance", "countrycode": "DE", "codec": "AAC", "bitrate": 128, "clickcount": 90, "votes": 11, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "electronic-3", "name": "Electronic Three", "url_resolved": "http://streams.example.test/electronic-3.ogg", "homepage": "https://radio.example.test/electronic-3", "tags": "electronic,synth", "countrycode": "JP", "codec": "OGG", "bitrate": 160, "clickcount": 80, "votes": 10, "lastcheckok": 1, "lastchecktime_iso8601": "2026-09-24T00:00:00Z" },
+    { "stationuuid": "electronic-flac", "name": "Unsupported Electronic", "url_resolved": "https://streams.example.test/electronic.flac", "codec": "FLAC", "lastcheckok": 1 }
+  ]
+}
