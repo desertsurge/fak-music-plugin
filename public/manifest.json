@@ -15,8 +15,6 @@
   "host_permissions": [
     "https://streams.iloveradio.de/*",
     "https://jazzradio.ice.infomaniak.ch/*",
-    "https://archive.org/*",
-    "https://*.archive.org/*",
     "https://raw.githubusercontent.com/*"
   ]
 }

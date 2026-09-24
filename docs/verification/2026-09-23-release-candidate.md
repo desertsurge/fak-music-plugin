@@ -77,3 +77,16 @@ cc-connect send --image artifacts/fak-music-plugin/desktop-final.png --image art
 - Internet Archive placeholder：当前环境连接超时，未宣称播放成功。
 
 本轮新增播放加载超时、远程目录 URL 校验和空配置短路测试后，最终自动化结果为 5 个测试文件、35 个测试通过，`npm run build` 成功。真实 Edge 验证截图保存为 `artifacts/fak-music-plugin/extension-real-final.png` 和 `artifacts/fak-music-plugin/extension-real-playing.png`；真实运行证据仍不代表所有第三方源长期可用。当前默认远程目录为空配置，Edge 实测启动后直接显示“本地目录”、4 个 fallback 条目且无刷新错误。
+
+## 2026-09-24 真实数据目录复核
+
+当前 fallback 已移除 Classical 和 Open Skies placeholder，只保留供应方名称与实际流一致的 I LOVE RADIO 和 Jazz Radio。使用 `dist/` 重新加载 Edge 未打包扩展后：
+
+- Popup 仅显示 `I LOVE RADIO` 和 `Jazz Radio` 两张卡片。
+- I LOVE RADIO：最终复测达到 `readyState=3`、`paused=false`，`currentTime` 从 `0` 增长至 `0.326578`。
+- 点击下一项后 Jazz Radio：`readyState=3`、`paused=false`、`currentTime=0.261869`。
+- 两个源的 Popup 状态均为“正在播放”，没有播放器错误或控制台错误。
+- 最终截图：`artifacts/fak-music-plugin/real-data-playing.png`。
+- 截图已通过 `cc-connect` 发送到 `manager` 项目会话，命令返回成功。
+
+最终自动化结果为 6 个测试文件、38 个测试通过，生产构建成功。远程自动更新目录仍需发布真实 HTTPS `presets.json` 后通过 `VITE_CATALOG_URL` 注入。

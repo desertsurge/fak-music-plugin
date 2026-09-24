@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-23T00:00:00Z",
+  "generatedAt": "2026-09-24T00:00:00Z",
   "presets": [
     {
-      "id": "lofi",
-      "name": "Lo-fi Focus",
-      "description": "适合专注工作的轻盈节拍",
+      "id": "iloveradio",
+      "name": "I LOVE RADIO",
+      "description": "I LOVE RADIO 官方公开直播流",
       "type": "station",
-      "source": "radio-browser",
+      "source": "i-love-radio",
       "items": [
         {
-          "id": "lofi-placeholder",
-          "title": "Lo-fi Radio",
+          "id": "iloveradio-main",
+          "title": "I LOVE RADIO",
           "streamUrl": "https://streams.iloveradio.de/iloveradio1.mp3",
           "codec": "mp3",
           "homepage": "https://www.iloveradio.de/",
-          "tags": ["lo-fi", "focus"]
+          "tags": ["pop", "radio"]
         }
       ]
     },
@@ -24,34 +24,15 @@
       "name": "Jazz After Hours",
       "description": "夜间爵士与器乐电台",
       "type": "station",
-      "source": "radio-browser",
+      "source": "jazz-radio",
       "items": [
         {
-          "id": "jazz-placeholder",
+          "id": "jazzradio-main",
           "title": "Jazz Radio",
           "streamUrl": "https://jazzradio.ice.infomaniak.ch/jazzradio-high.mp3",
           "codec": "mp3",
           "homepage": "https://www.jazzradio.com/",
           "tags": ["jazz", "instrumental"]
-        }
-      ]
-    },
-    {
-      "id": "open-tracks",
-      "name": "Open License Picks",
-      "description": "开放授权音乐示例，替换为自动生成目录后持续更新",
-      "type": "tracks",
-      "source": "internet-archive",
-      "items": [
-        {
-          "id": "open-track-placeholder",
-          "title": "Open Skies",
-          "artist": "Fak Music Collective",
-          "audioUrl": "https://archive.org/download/testmp3testfile/mpthreetest.mp3",
-          "license": "Public Domain",
-          "sourceUrl": "https://archive.org/",
-          "attribution": "Public domain audio placeholder",
-          "tags": ["open", "ambient"]
         }
       ]
     }

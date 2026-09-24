@@ -16,10 +16,15 @@ export function normalizeCatalogSource(value: unknown): AppState['catalogSource'
   return value === 'remote' || value === 'cache' || value === 'fallback' ? value : 'fallback';
 }
 
+export function shouldUsePersistedCatalog(source: AppState['catalogSource']): boolean {
+  return source === 'cache' || source === 'remote';
+}
+
 export async function readPersistedState(catalog: Catalog): Promise<AppState> {
   const stored = await chrome.storage.local.get(Object.values(STORAGE_KEYS));
+  const catalogSource = normalizeCatalogSource(stored[STORAGE_KEYS.catalogSource]);
   let persistedCatalog = catalog;
-  if (stored[STORAGE_KEYS.catalog]) {
+  if (stored[STORAGE_KEYS.catalog] && shouldUsePersistedCatalog(catalogSource)) {
     try {
       persistedCatalog = parseCatalog(stored[STORAGE_KEYS.catalog]);
     } catch {
@@ -28,7 +33,7 @@ export async function readPersistedState(catalog: Catalog): Promise<AppState> {
   }
   return {
     catalog: persistedCatalog,
-    catalogSource: normalizeCatalogSource(stored[STORAGE_KEYS.catalogSource]),
+    catalogSource,
     favorites: Array.isArray(stored[STORAGE_KEYS.favorites]) ? stored[STORAGE_KEYS.favorites] : [],
     player: { ...DEFAULT_PLAYER, ...(stored[STORAGE_KEYS.player] ?? {}) },
     activePresetId: (stored[STORAGE_KEYS.player]?.currentPresetId as string | undefined) ?? persistedCatalog.presets[0]?.id ?? '',
