@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build and test output
+dist/
+coverage/
+artifacts/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor settings
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# TypeScript and tooling caches
+*.tsbuildinfo
+.vite/
+.vitest/
