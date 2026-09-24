@@ -1,13 +1,13 @@
 import { parseCatalog, flattenPresetItems } from './shared/catalog';
-import { reconcileQueueIndex, refreshCatalogState } from './shared/catalog-refresh';
+import { reconcileQueueIndex, refreshCatalogState, resolveCatalogUrl } from './shared/catalog-refresh';
 import { buildPlaybackCandidates, clampVolume, isCurrentPlaybackId, nextQueueIndex, nextUnfailedQueueIndex, playbackErrorAction, playbackToggleAction, shouldResetPlaybackFailures } from './shared/player';
 import type { PlaybackFailureResetTrigger } from './shared/player';
 import type { OffscreenEvent, OffscreenMessage, RuntimeMessage, RuntimeResponse } from './shared/messages';
 import type { AppState, Catalog, PlayerState, Preset, StationItem, TrackItem } from './shared/types';
 import { DEFAULT_PLAYER, persistState, readPersistedState } from './shared/storage';
 
-// Remote sync is enabled only when the production build provides a maintained HTTPS catalog.
-const REMOTE_CATALOG_URL = import.meta.env.VITE_CATALOG_URL ?? '';
+const DEFAULT_CATALOG_URL = 'https://desertsurge.github.io/fak-music-plugin/presets.json';
+const REMOTE_CATALOG_URL = resolveCatalogUrl(import.meta.env.VITE_CATALOG_URL, DEFAULT_CATALOG_URL);
 const REFRESH_ALARM = 'catalog-refresh';
 const PLAYBACK_SESSION = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 

@@ -15,11 +15,15 @@ export function normalizeCatalogUrl(input: unknown): string | undefined {
   if (!value) return undefined;
   try {
     const parsed = new URL(value);
-    if (parsed.protocol !== 'https:' || !parsed.hostname) return undefined;
+    if (!['http:', 'https:'].includes(parsed.protocol) || !parsed.hostname) return undefined;
   } catch {
     return undefined;
   }
   return value;
+}
+
+export function resolveCatalogUrl(configuredUrl: unknown, defaultUrl: string): string {
+  return normalizeCatalogUrl(configuredUrl) ?? defaultUrl;
 }
 
 export function shouldRefreshCatalog(input: unknown): boolean {
@@ -28,7 +32,7 @@ export function shouldRefreshCatalog(input: unknown): boolean {
 
 export async function fetchRemoteCatalog(url: string, fetcher: Fetcher = fetch, timeoutMs = 8000): Promise<{ catalog: Catalog; fetchedAt: string }> {
   const normalizedUrl = normalizeCatalogUrl(url);
-  if (!normalizedUrl) throw new Error('Catalog URL must use HTTPS');
+  if (!normalizedUrl) throw new Error('Catalog URL must use HTTP or HTTPS');
   const controller = new AbortController();
   const request = fetcher(normalizedUrl, { signal: controller.signal, cache: 'no-store' });
   let timer: ReturnType<typeof setTimeout> | undefined;
@@ -57,7 +61,7 @@ export async function refreshCatalogState(
   timeoutMs = 8000,
 ): Promise<CatalogRefreshResult> {
   if (typeof url !== 'string' || url.trim().length === 0) return { ok: true, source: 'local' };
-  if (!shouldRefreshCatalog(url)) return { ok: false, error: 'Catalog URL must use HTTPS' };
+  if (!shouldRefreshCatalog(url)) return { ok: false, error: 'Catalog URL must use HTTP or HTTPS' };
   try {
     const { catalog } = await fetchRemoteCatalog(url, fetcher, timeoutMs);
     const nextQueue = flattenPresetItems(catalog);

@@ -13,8 +13,7 @@
   },
   "permissions": ["storage", "alarms", "offscreen"],
   "host_permissions": [
-    "https://streams.iloveradio.de/*",
-    "https://jazzradio.ice.infomaniak.ch/*",
-    "https://raw.githubusercontent.com/*"
+    "http://*/*",
+    "https://*/*"
   ]
 }

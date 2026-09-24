@@ -39,13 +39,7 @@ npm run build
 
 ## 远程目录
 
-扩展支持从构建时注入的 HTTPS 地址获取动态目录；未配置时不会发起远程请求：
-
-```text
-https://raw.githubusercontent.com/fak-music/music-presets/main/generated/presets.json
-```
-
-首次初始化会先加载 [`public/presets-fallback.json`](public/presets-fallback.json)，已有缓存优先作为当前内容。配置目录地址并构建：
+扩展默认从 [`https://desertsurge.github.io/fak-music-plugin/presets.json`](https://desertsurge.github.io/fak-music-plugin/presets.json) 获取动态目录，同时支持通过构建变量覆盖为其他 HTTP(S) 地址。首次初始化会先加载 [`public/presets-fallback.json`](public/presets-fallback.json)，已有缓存优先作为当前内容；远程刷新不会阻塞首屏。覆盖目录地址并构建：
 
 ```powershell
 $env:VITE_CATALOG_URL = 'https://your-maintained-host.example/presets.json'
@@ -54,7 +48,7 @@ npm run build
 
 远程响应只有在通过目录校验后才会替换当前目录。网络错误、HTTP 错误、超时或格式校验失败都不会清空或覆盖最后一次可用的 fallback/cache，Popup 中的“更新目录”按钮可再次尝试，失败时可点击“重试”。后台定时任务每 6 小时再次刷新。
 
-上面的 GitHub Raw 地址只是配置示例，当前未作为默认地址启用。默认 fallback 只保留已经实测可播放的 I LOVE RADIO 和 Jazz Radio；开放授权单曲在通过真实连通性、许可证和归属审核前不会进入默认目录。目录结构、自动更新设想和许可证策略见 [`docs/music-presets-auto-update-plan.md`](docs/music-presets-auto-update-plan.md)。
+默认 fallback 只保留已经实测可播放的 I LOVE RADIO 和 Jazz Radio；开放授权单曲在通过真实连通性、许可证和归属审核前不会进入默认目录。目录结构、自动更新设想和许可证策略见 [`docs/music-presets-auto-update-plan.md`](docs/music-presets-auto-update-plan.md)。
 
 ## 自动发布静态目录
 
@@ -76,8 +70,11 @@ npm run catalog:generate
 # 使用固定 fixture 生成可复现快照
 npm run catalog:generate:fixture
 
-# 在临时目录验证目录协议，不修改跟踪文件
+# 在临时目录用 fixture 验证目录协议，不修改跟踪文件
 npm run catalog:check
+
+# 验证已经生成的实际 Pages 产物
+npm run catalog:check -- --input catalog/generated
 ```
 
 [`publish-catalog.yml`](.github/workflows/publish-catalog.yml) 每 6 小时运行一次，也支持在 GitHub Actions 中手动触发。工作流依次执行依赖安装、全量测试、实时目录生成、目录契约检查和扩展构建，全部通过后才把 `catalog/generated` 部署到 GitHub Pages。生成失败不会发布空目录，Pages 保留上一份成功部署。
@@ -109,7 +106,7 @@ npm run catalog:check
 npm run build
 ```
 
-发布候选版的独立验证结果为 5 个测试文件、35 个测试通过，生产构建成功。当前测试是 helper/unit 测试和 jsdom UI 测试，覆盖目录校验、许可证过滤、播放候选切换、播放加载超时、全队列失败、音量边界、远程目录 URL/HTTPS 校验和回退、Popup 类型筛选、播放错误重试、刷新失败重试和移动端播放器 safe-area；当前没有 Service Worker/background 或 Offscreen Document 的集成测试。浏览器证据覆盖 Popup 首屏、类型筛选、桌面/窄窗口布局及 `scrollWidth`，并在 Edge 未打包扩展中实测 Lo-fi/Jazz 播放和失效源超时跳过；不代表所有第三方音频源长期可用。证据及截图索引见 [`docs/verification/2026-09-23-release-candidate.md`](docs/verification/2026-09-23-release-candidate.md)。
+当前测试是 helper/unit 测试和 jsdom UI 测试，覆盖目录校验、HTTP(S) 远程目录、许可证过滤、播放候选切换、播放加载超时、全队列失败、音量边界、回退、Popup 类型筛选、播放错误重试、刷新失败重试和移动端播放器 safe-area；当前没有 Service Worker/background 或 Offscreen Document 的集成测试。浏览器证据覆盖 Popup 首屏、类型筛选、桌面/窄窗口布局及 `scrollWidth`，并在 Edge 未打包扩展中实测 Lo-fi/Jazz 播放和失效源超时跳过；不代表所有第三方音频源长期可用。证据及截图索引见 [`docs/verification/2026-09-23-release-candidate.md`](docs/verification/2026-09-23-release-candidate.md)。
 
 ## 设计文档
 
@@ -120,4 +117,4 @@ npm run build
 
 项目许可证尚未指定，当前仓库没有声明可供再分发的项目许可证。发布前必须补充 `LICENSE`，逐项确认默认目录中每个音频的授权、来源和归属要求，并补充隐私说明及商店所需材料。目录中的“开放授权”字段是数据校验门槛，不是本项目对第三方内容拥有版权的声明；网络电台的播放权、地区限制和运营方条款仍需单独核实。
 
-本轮验证了构建、自动化测试、Popup/UI 交互，以及 Edge 未打包扩展中的 I LOVE RADIO/Jazz Radio 真实音频播放；远程目录当前仍未配置。没有把第三方电台长期可用或浏览器扩展商店发布当作已完成事项。
+本轮验证了构建、自动化测试、Popup/UI 交互，以及 Edge 未打包扩展中的 I LOVE RADIO/Jazz Radio 真实音频播放。没有把第三方电台长期可用或浏览器扩展商店发布当作已完成事项。

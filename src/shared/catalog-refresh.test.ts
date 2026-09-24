@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fetchRemoteCatalog, normalizeCatalogUrl, reconcileQueueIndex, refreshCatalogState, shouldRefreshCatalog, type Fetcher } from './catalog-refresh';
+import { fetchRemoteCatalog, normalizeCatalogUrl, reconcileQueueIndex, refreshCatalogState, resolveCatalogUrl, shouldRefreshCatalog, type Fetcher } from './catalog-refresh';
 
 const validPayload = {
   schemaVersion: 1,
@@ -22,12 +22,21 @@ const cachedQueue = (state: ReturnType<typeof cachedState>) => [{
 }];
 
 describe('catalog URL configuration', () => {
-  it('normalizes HTTPS URLs and rejects empty or non-HTTPS values', () => {
+  it('normalizes HTTP(S) URLs and rejects empty, malformed, or unsupported values', () => {
     expect(normalizeCatalogUrl('  https://catalog.test/presets.json  ')).toBe('https://catalog.test/presets.json');
+    expect(normalizeCatalogUrl('http://catalog.test/presets.json')).toBe('http://catalog.test/presets.json');
     expect(normalizeCatalogUrl('')).toBeUndefined();
-    expect(normalizeCatalogUrl('http://catalog.test/presets.json')).toBeUndefined();
+    expect(normalizeCatalogUrl('file:///tmp/presets.json')).toBeUndefined();
+    expect(normalizeCatalogUrl('ftp://catalog.test/presets.json')).toBeUndefined();
+    expect(normalizeCatalogUrl('not a URL')).toBeUndefined();
     expect(shouldRefreshCatalog('https://catalog.test/presets.json')).toBe(true);
+    expect(shouldRefreshCatalog('http://catalog.test/presets.json')).toBe(true);
     expect(shouldRefreshCatalog('')).toBe(false);
+  });
+
+  it('uses an injected catalog URL before the Pages default', () => {
+    expect(resolveCatalogUrl('https://override.test/presets.json', 'https://owner.github.io/fak-music-plugin/presets.json')).toBe('https://override.test/presets.json');
+    expect(resolveCatalogUrl(undefined, 'https://owner.github.io/fak-music-plugin/presets.json')).toBe('https://owner.github.io/fak-music-plugin/presets.json');
   });
 });
 
@@ -69,15 +78,16 @@ describe('refreshCatalogState', () => {
     expect(queue.map(({ item }) => item.id)).toEqual(['old']);
   });
 
-  it('rejects a configured URL that is not HTTPS before making a request', async () => {
+  it('loads a configured HTTP catalog', async () => {
     const state = cachedState();
     const queue = cachedQueue(state);
-    const fetcher = vi.fn<Fetcher>();
+    const fetcher = vi.fn<Fetcher>(async () => new Response(JSON.stringify(validPayload), { status: 200 }));
 
     const result = await refreshCatalogState(state, queue, 'http://catalog.test/presets.json', fetcher);
 
-    expect(result).toEqual({ ok: false, error: 'Catalog URL must use HTTPS' });
-    expect(fetcher).not.toHaveBeenCalled();
+    expect(result).toEqual({ ok: true });
+    expect(fetcher).toHaveBeenCalledWith('http://catalog.test/presets.json', expect.objectContaining({ cache: 'no-store' }));
+    expect(state.catalogSource).toBe('remote');
   });
 
   it('replaces catalog, source, and queue only after a successful injected fetch', async () => {
