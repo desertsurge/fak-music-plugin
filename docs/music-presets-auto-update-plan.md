@@ -350,3 +350,15 @@ GitHub Actions 建议每天或每 6 小时运行一次：
 - 不需要逐首添加歌曲
 - 能通过规则而不是人工维护具体内容
 - 可对默认内容建立健康检查与许可证门槛
+
+## 14. 当前落地状态（2026-09-24）
+
+当前实现采用单仓库发布，扩展源码、目录规则、生成器和 Pages 工作流均位于 `fak-music-plugin`：
+
+- `catalog/rules.json`：定义 5 个 Radio Browser 分类、编码白名单、最低条目数和发布上限。
+- `scripts/catalog-generator.mjs`：支持实时 API 镜像发现与故障转移，也支持固定 fixture 的可复现生成。
+- `scripts/check-catalog.mjs`：在临时目录检查 `presets.json`、`health.json` 和 `index.html`，不修改跟踪文件。
+- `.github/workflows/publish-catalog.yml`：每 6 小时和手动触发，完成测试、生成、校验与构建后发布 GitHub Pages。
+- `catalog/generated`：保留一份固定 fixture 生成的可审查基线，运行时 Pages 内容由工作流实时生成。
+
+当前自动生成范围仅包括公开网络电台。Jamendo、Internet Archive 和开放授权单曲仍属于后续阶段；在许可证、归属信息和真实播放可用性审查完成前，不进入默认远程目录。

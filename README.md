@@ -56,6 +56,32 @@ npm run build
 
 上面的 GitHub Raw 地址只是配置示例，当前未作为默认地址启用。默认 fallback 只保留已经实测可播放的 I LOVE RADIO 和 Jazz Radio；开放授权单曲在通过真实连通性、许可证和归属审核前不会进入默认目录。目录结构、自动更新设想和许可证策略见 [`docs/music-presets-auto-update-plan.md`](docs/music-presets-auto-update-plan.md)。
 
+## 自动发布静态目录
+
+仓库内的 [`catalog/rules.json`](catalog/rules.json) 定义 Lo-fi、Jazz、Classical、Ambient 和 Electronic 分类及最低条目数。[`scripts/catalog-generator.mjs`](scripts/catalog-generator.mjs) 从 Radio Browser 获取数据，过滤不健康、重复或编码不受支持的电台，并生成 GitHub Pages 所需文件：
+
+```text
+catalog/generated/
+├── index.html
+├── presets.json
+└── health.json
+```
+
+本地命令：
+
+```bash
+# 从 Radio Browser 实时生成
+npm run catalog:generate
+
+# 使用固定 fixture 生成可复现快照
+npm run catalog:generate:fixture
+
+# 在临时目录验证目录协议，不修改跟踪文件
+npm run catalog:check
+```
+
+[`publish-catalog.yml`](.github/workflows/publish-catalog.yml) 每 6 小时运行一次，也支持在 GitHub Actions 中手动触发。工作流依次执行依赖安装、全量测试、实时目录生成、目录契约检查和扩展构建，全部通过后才把 `catalog/generated` 部署到 GitHub Pages。生成失败不会发布空目录，Pages 保留上一份成功部署。
+
 ## 项目结构
 
 ```text
@@ -67,12 +93,19 @@ src/
 public/
 ├── manifest.json
 └── presets-fallback.json
+catalog/
+├── rules.json                 # Radio Browser 分类与质量门槛
+└── generated/                # GitHub Pages 静态目录
+scripts/
+├── catalog-generator.mjs     # 目录生成器
+└── check-catalog.mjs         # 独立目录契约检查
 ```
 
 ## 验证
 
 ```bash
 npm run test:run
+npm run catalog:check
 npm run build
 ```
 
