@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -108,6 +108,19 @@ describe('catalog generator mapping', () => {
   });
 });
 
+describe('Radio Browser discovery', () => {
+  it('falls back to an official mirror when the all-server endpoint fails', async () => {
+    const { discoverRadioBrowserServers } = await loadGenerator();
+    const fetcher = vi.fn(async (url) => {
+      if (String(url).includes('all.api.radio-browser.info')) throw new Error('read ECONNRESET');
+      return new Response(JSON.stringify([{ name: 'de1.api.radio-browser.info' }]), { status: 200 });
+    });
+
+    await expect(discoverRadioBrowserServers(fetcher)).resolves.toEqual(['https://de1.api.radio-browser.info']);
+    expect(fetcher).toHaveBeenNthCalledWith(2, 'https://de1.api.radio-browser.info/json/servers', expect.any(Object));
+  });
+});
+
 describe('catalog generator CLI', () => {
   it('writes the complete static Pages bundle from a fixture', () => {
     const output = mkdtempSync(join(tmpdir(), 'fak-music-catalog-'));
@@ -165,5 +178,24 @@ describe('catalog generator CLI', () => {
     expect(result.stderr).toBe('');
     expect(result.status).toBe(0);
     expect(result.stdout).toContain('Catalog check passed: 5 presets, 15 stations');
+  });
+
+  it('rejects an invalid generated bundle passed through --input', () => {
+    const workspace = mkdtempSync(join(tmpdir(), 'fak-music-catalog-check-input-'));
+    const input = join(workspace, 'generated');
+    mkdirSync(input);
+    writeFileSync(join(input, 'presets.json'), JSON.stringify({ schemaVersion: 2, presets: [] }), 'utf8');
+    writeFileSync(join(input, 'health.json'), JSON.stringify({ status: 'ok', presetCount: 0, itemCount: 0 }), 'utf8');
+    writeFileSync(join(input, 'index.html'), '<title>Fak Music Catalog</title><a href="presets.json">presets</a><a href="health.json">health</a>', 'utf8');
+    try {
+      const result = spawnSync(process.execPath, ['scripts/check-catalog.mjs', '--input', input], {
+        cwd: repositoryRoot,
+        encoding: 'utf8',
+      });
+      expect(result.status).not.toBe(0);
+      expect(result.stderr).toContain('Generated catalog does not match schema version 1');
+    } finally {
+      rmSync(workspace, { recursive: true, force: true });
+    }
   });
 });

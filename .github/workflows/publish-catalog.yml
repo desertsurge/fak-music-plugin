@@ -50,7 +50,7 @@ jobs:
         run: npm run catalog:generate
 
       - name: Validate catalog contract
-        run: npm run catalog:check
+        run: npm run catalog:check -- --input catalog/generated
 
       - name: Build extension
         run: npm run build

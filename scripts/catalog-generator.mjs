@@ -4,7 +4,11 @@ import { dirname, isAbsolute, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const DEFAULT_CODECS = ['MP3', 'AAC', 'OGG'];
-const RADIO_BROWSER_SERVERS_URL = 'https://all.api.radio-browser.info/json/servers';
+const RADIO_BROWSER_DISCOVERY_URLS = [
+  'https://all.api.radio-browser.info/json/servers',
+  'https://de1.api.radio-browser.info/json/servers',
+  'https://de2.api.radio-browser.info/json/servers',
+];
 const DEFAULT_OUTPUT = 'catalog/generated';
 const REQUEST_TIMEOUT_MS = 12_000;
 
@@ -121,12 +125,20 @@ async function fetchJson(url, fetcher = fetch, timeoutMs = REQUEST_TIMEOUT_MS) {
 }
 
 export async function discoverRadioBrowserServers(fetcher = fetch) {
-  const response = await fetchJson(RADIO_BROWSER_SERVERS_URL, fetcher);
-  const servers = Array.isArray(response)
-    ? response.map((server) => server?.name).filter((name) => typeof name === 'string' && name.trim()).map((name) => `https://${name.trim()}`)
-    : [];
-  if (servers.length === 0) throw new Error('Radio Browser returned no API servers');
-  return [...new Set(servers)].sort();
+  const errors = [];
+  for (const url of RADIO_BROWSER_DISCOVERY_URLS) {
+    try {
+      const response = await fetchJson(url, fetcher);
+      const servers = Array.isArray(response)
+        ? response.map((server) => server?.name).filter((name) => typeof name === 'string' && name.trim()).map((name) => `https://${name.trim()}`)
+        : [];
+      if (servers.length > 0) return [...new Set(servers)].sort();
+      errors.push(`${url}: no API servers`);
+    } catch (error) {
+      errors.push(`${url}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+  throw new Error(`Radio Browser discovery failed: ${errors.join('; ')}`);
 }
 
 async function fetchStationsForRule(rule, servers, fetcher = fetch) {

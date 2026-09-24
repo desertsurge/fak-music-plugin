@@ -15,7 +15,7 @@ describe('publish catalog workflow', () => {
       'npm ci',
       'npm run test:run',
       'npm run catalog:generate',
-      'npm run catalog:check',
+      'npm run catalog:check -- --input catalog/generated',
       'npm run build',
       'actions/upload-pages-artifact@v3',
       'actions/deploy-pages@v4',

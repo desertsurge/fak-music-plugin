@@ -1,6 +1,7 @@
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { parseArgs } from 'node:util';
 import { run } from './catalog-generator.mjs';
 
 const FIXTURE_TIME = '2026-09-24T00:00:00.000Z';
@@ -22,13 +23,19 @@ function validateCatalog(catalog) {
 }
 
 const repositoryRoot = resolve(import.meta.dirname, '..');
-const output = await mkdtemp(join(tmpdir(), 'fak-music-catalog-check-'));
+const { values } = parseArgs({
+  options: { input: { type: 'string' } },
+});
+const temporaryOutput = values.input ? undefined : await mkdtemp(join(tmpdir(), 'fak-music-catalog-check-'));
+const output = values.input ? resolve(repositoryRoot, values.input) : temporaryOutput;
 try {
-  await run([
-    '--fixture', resolve(repositoryRoot, 'scripts', 'fixtures', 'radio-browser-stations.json'),
-    '--output', output,
-    '--generated-at', FIXTURE_TIME,
-  ]);
+  if (temporaryOutput) {
+    await run([
+      '--fixture', resolve(repositoryRoot, 'scripts', 'fixtures', 'radio-browser-stations.json'),
+      '--output', output,
+      '--generated-at', FIXTURE_TIME,
+    ]);
+  }
   const catalog = JSON.parse(await readFile(join(output, 'presets.json'), 'utf8'));
   const health = JSON.parse(await readFile(join(output, 'health.json'), 'utf8'));
   const index = await readFile(join(output, 'index.html'), 'utf8');
@@ -42,5 +49,5 @@ try {
   }
   process.stdout.write(`Catalog check passed: ${catalog.presets.length} presets, ${itemCount} stations\n`);
 } finally {
-  await rm(output, { recursive: true, force: true });
+  if (temporaryOutput) await rm(temporaryOutput, { recursive: true, force: true });
 }
