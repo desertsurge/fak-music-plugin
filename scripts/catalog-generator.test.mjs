@@ -131,6 +131,7 @@ describe('catalog generator CLI', () => {
       expect(existsSync(join(output, 'presets.json'))).toBe(true);
       expect(existsSync(join(output, 'health.json'))).toBe(true);
       expect(existsSync(join(output, 'index.html'))).toBe(true);
+      expect(readFileSync(join(output, 'index.html'), 'utf8')).toContain('<link rel="icon" href="data:,">');
       const catalog = JSON.parse(readFileSync(join(output, 'presets.json'), 'utf8'));
       expect(catalog).toMatchObject({ schemaVersion: 1, generatedAt: fixedTime });
       expect(catalog.presets.map((preset) => preset.id)).toEqual(['lofi', 'jazz', 'classical', 'ambient', 'electronic']);

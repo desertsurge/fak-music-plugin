@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-24T07:34:07.137Z",
+  "generatedAt": "2026-09-24T08:06:39.171Z",
   "presets": [
     {
       "id": "lofi",
@@ -410,6 +410,28 @@
           "lastCheckedAt": "2026-09-21T02:16:46Z"
         },
         {
+          "id": "radio-browser-3f4be720-c996-439f-be3b-cce594ea2852",
+          "title": "0R - MUSIC FOR SLEEP || Sleep, Relax, Calm, Meditation, Nature, Ambient, Soft Music, Piano, Deep Sleep, Peaceful, Chill, Background, Slow, Gentle, Instrumental",
+          "streamUrl": "https://0nlineradio.radioho.st/classical-classical-music-for-sleep?ref=radio-browser26",
+          "codec": "mp3",
+          "homepage": "https://plus.rm.fm/",
+          "country": "DE",
+          "tags": [
+            "ambient",
+            "background",
+            "calm",
+            "chillout",
+            "classical",
+            "easy listening",
+            "nature",
+            "relax",
+            "sleep",
+            "slow",
+            "soft music"
+          ],
+          "lastCheckedAt": "2026-09-21T05:15:03Z"
+        },
+        {
           "id": "radio-browser-4f30d107-82f3-4e4e-99e4-44e05adcb2e9",
           "title": "0R - PIANO JAZZ LOUNGE || Jazz, Piano, Lounge, Smooth, Chill, Relax, Soft, Acoustic, Instrumental, Evening, Romantic, Background, Coffee, Mellow, Elegant",
           "streamUrl": "https://0nlineradio.radioho.st/lounge-piano-jazz-bar?ref=radio-browser26",
@@ -434,28 +456,6 @@
             "vocal jazz"
           ],
           "lastCheckedAt": "2026-09-21T00:17:21Z"
-        },
-        {
-          "id": "radio-browser-3f4be720-c996-439f-be3b-cce594ea2852",
-          "title": "0R - MUSIC FOR SLEEP || Sleep, Relax, Calm, Meditation, Nature, Ambient, Soft Music, Piano, Deep Sleep, Peaceful, Chill, Background, Slow, Gentle, Instrumental",
-          "streamUrl": "https://0nlineradio.radioho.st/classical-classical-music-for-sleep?ref=radio-browser26",
-          "codec": "mp3",
-          "homepage": "https://plus.rm.fm/",
-          "country": "DE",
-          "tags": [
-            "ambient",
-            "background",
-            "calm",
-            "chillout",
-            "classical",
-            "easy listening",
-            "nature",
-            "relax",
-            "sleep",
-            "slow",
-            "soft music"
-          ],
-          "lastCheckedAt": "2026-09-21T05:15:03Z"
         },
         {
           "id": "radio-browser-443a5e7e-4392-4930-bbed-10b9af54e32e",
@@ -606,32 +606,6 @@
           "lastCheckedAt": "2026-09-21T03:23:39Z"
         },
         {
-          "id": "radio-browser-4f30d107-82f3-4e4e-99e4-44e05adcb2e9",
-          "title": "0R - PIANO JAZZ LOUNGE || Jazz, Piano, Lounge, Smooth, Chill, Relax, Soft, Acoustic, Instrumental, Evening, Romantic, Background, Coffee, Mellow, Elegant",
-          "streamUrl": "https://0nlineradio.radioho.st/lounge-piano-jazz-bar?ref=radio-browser26",
-          "codec": "mp3",
-          "homepage": "https://plus.rm.fm/",
-          "country": "DE",
-          "tags": [
-            "acoustic",
-            "ambient",
-            "ambient and relaxation music",
-            "ambient lounge",
-            "classical piano",
-            "coffee",
-            "easy listening",
-            "jazz",
-            "jazz lounge",
-            "lounge",
-            "piano",
-            "restaurant",
-            "retro",
-            "smooth jazz",
-            "vocal jazz"
-          ],
-          "lastCheckedAt": "2026-09-21T00:17:21Z"
-        },
-        {
           "id": "radio-browser-3f4be720-c996-439f-be3b-cce594ea2852",
           "title": "0R - MUSIC FOR SLEEP || Sleep, Relax, Calm, Meditation, Nature, Ambient, Soft Music, Piano, Deep Sleep, Peaceful, Chill, Background, Slow, Gentle, Instrumental",
           "streamUrl": "https://0nlineradio.radioho.st/classical-classical-music-for-sleep?ref=radio-browser26",
@@ -703,6 +677,32 @@
             "sounds of nature"
           ],
           "lastCheckedAt": "2026-09-20T16:42:10Z"
+        },
+        {
+          "id": "radio-browser-4f30d107-82f3-4e4e-99e4-44e05adcb2e9",
+          "title": "0R - PIANO JAZZ LOUNGE || Jazz, Piano, Lounge, Smooth, Chill, Relax, Soft, Acoustic, Instrumental, Evening, Romantic, Background, Coffee, Mellow, Elegant",
+          "streamUrl": "https://0nlineradio.radioho.st/lounge-piano-jazz-bar?ref=radio-browser26",
+          "codec": "mp3",
+          "homepage": "https://plus.rm.fm/",
+          "country": "DE",
+          "tags": [
+            "acoustic",
+            "ambient",
+            "ambient and relaxation music",
+            "ambient lounge",
+            "classical piano",
+            "coffee",
+            "easy listening",
+            "jazz",
+            "jazz lounge",
+            "lounge",
+            "piano",
+            "restaurant",
+            "retro",
+            "smooth jazz",
+            "vocal jazz"
+          ],
+          "lastCheckedAt": "2026-09-21T00:17:21Z"
         }
       ]
     },

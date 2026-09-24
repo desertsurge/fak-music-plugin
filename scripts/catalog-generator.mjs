@@ -187,7 +187,7 @@ function buildIndex(catalog) {
   const rows = catalog.presets.map((preset) => `<tr><td>${preset.name}</td><td>${preset.items.length}</td><td>${preset.source}</td></tr>`).join('');
   return `<!doctype html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fak Music Catalog</title></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>Fak Music Catalog</title></head>
 <body><main><h1>Fak Music Catalog</h1><p>Generated at ${catalog.generatedAt}</p><table><thead><tr><th>Preset</th><th>Stations</th><th>Source</th></tr></thead><tbody>${rows}</tbody></table><p><a href="./presets.json">presets.json</a> · <a href="./health.json">health.json</a></p></main></body>
 </html>
 `;

@@ -9,7 +9,7 @@
 ## 实时目录
 
 - 命令：`npm run catalog:generate`
-- 生成时间：`2026-09-24T07:34:07.137Z`
+- 最新跟踪快照生成时间：`2026-09-24T08:06:39.171Z`
 - 上游镜像：`https://de1.api.radio-browser.info`
 - 结果：5 个预设、40 个电台；Lo-fi、Jazz、Classical、Ambient、Electronic 各 8 个。
 - 实际产物校验：`npm run catalog:check -- --input catalog/generated`，结果为 `Catalog check passed: 5 presets, 40 stations`。
@@ -32,7 +32,7 @@ Electronic 超时项使用 20 秒窗口复测后返回 HTTP 200 并读取 4096 �
 
 ## 本地门禁
 
-- `npm run test:run`：9 个测试文件、57 个测试通过。
+- `npm run test:run`：9 个测试文件、58 个测试通过。
 - `npm run catalog:check`：fixture 自检通过，5 个预设、15 个电台。
 - `npm run catalog:check -- --input catalog/generated`：实时产物通过，5 个预设、40 个电台。
 - `npm run build`：TypeScript、Vite 构建和外部字体扫描通过；构建产物包含 Pages 默认地址及 HTTP/HTTPS 主机权限。
@@ -45,3 +45,12 @@ Electronic 超时项使用 20 秒窗口复测后返回 HTTP 200 并读取 4096 �
 发布前审查发现并修复两项缺口：工作流原先在实时生成后仍只校验 fixture，现已改为校验 `catalog/generated`；Radio Browser 服务发现原先依赖单一聚合域名，现已加入官方镜像回退。扩展继续保留 fallback 和 last-known-good 缓存，远程目录失败不会清空当前目录。
 
 本地证据足以进入远程仓库与 Pages 发布阶段。它不证明第三方流长期可用，也不替代 GitHub Actions 成功、Pages HTTP 200、匿名 schema 校验和远端提交一致性检查。
+
+## 远程发布
+
+- Public 仓库：`https://github.com/desertsurge/fak-music-plugin`
+- Pages：`https://desertsurge.github.io/fak-music-plugin/`
+- 成功工作流：`35972631421`，head SHA `3d67ae6e4c891be9f5a41e107a999d1c3adeef4e`。
+- build job 的依赖安装、测试、实时生成、实际产物校验、扩展构建、Pages 配置与 artifact 上传均为 `success`；deploy job 为 `success`。
+- 匿名读取首页、`presets.json`、`health.json` 均为 HTTP 200；本地 `catalog:check` 对下载副本验证通过，5 个预设、40 个电台，catalog 与 health 的 `generatedAt` 和数量一致。
+- 浏览器实测首页标题、5 行分类、JSON 链接和无水平溢出均正常。首次检查仅发现缺少 favicon 导致的 404，生成器已增加 data favicon 并由回归测试覆盖。
